@@ -1,0 +1,11 @@
+-- From the following table write a query in SQL to retrieve the total cost of each salesorderID that exceeds 100000. Return SalesOrderID, total cost.
+
+SELECT 
+    SalesOrderID, 
+    SUM(orderqty * unitprice) AS OrderIDCost -- Calcula o custo total do pedido
+FROM 
+    Sales.SalesOrderDetail -- Tabela que contém os dados
+GROUP BY 
+    SalesOrderID -- Agrupa os resultados por ID do pedido
+HAVING 
+    SUM(orderqty * unitprice) > 100000.00; -- Filtra apenas pedidos com custo total maior que 100000
