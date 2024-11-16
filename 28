@@ -1,0 +1,7 @@
+--From the following table write a query in SQL to retrieve products whose names start with 'Lock Washer'. Return product ID, and name and order the result set in ascending order on product ID column.
+
+
+SELECT ProductID, Name 
+FROM Production.Product
+WHERE Name LIKE 'Lock Washer%'
+ORDER BY ProductID;
