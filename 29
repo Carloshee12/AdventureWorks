@@ -1,0 +1,6 @@
+-- Write a query in SQL to fetch rows from product table and order the result set on an unspecified column listprice. Return product ID, name, and color of the product.
+
+SELECT ProductID,Name,Color
+FROM Production.Product
+ORDER BY ListPrice;
+
