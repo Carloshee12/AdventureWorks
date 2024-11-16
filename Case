@@ -1,0 +1,12 @@
+-- O CASE em SQL é uma expressão condicional que permite executar diferentes ações com base em condições específicas. Ele funciona de forma semelhante a uma estrutura IF-ELSE em linguagens de programação. É muito útil para criar colunas calculadas ou categorizar dados diretamente em uma consulta SQL.
+A estrutura básica de um CASE em SQL é:
+
+
+SELECT 
+    CASE 
+        WHEN condição1 THEN resultado1
+        WHEN condição2 THEN resultado2
+        ...
+        ELSE resultado_padrao
+    END AS nome_coluna
+FROM
