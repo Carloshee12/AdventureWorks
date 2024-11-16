@@ -1,0 +1,12 @@
+
+SELECT ROW_NUMBER() OVER (PARTITION BY PostalCode ORDER BY SalesYTD DESC) AS "Row Number",
+LastName, SalesYTD, PostalCode
+
+FROM Sales.SalesPerson as Sales
+JOIN Person.Person AS pp
+ON pp.BusinessEntityID = Sales.BusinessEntityID
+JOIN Person.Address AS ppa
+ON ppa.AddressID = pp.BusinessEntityID
+Where TerritoryID IS NOT NULL
+AND SalesYTD <> 0
+order by PostalCode;
