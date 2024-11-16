@@ -1,0 +1,12 @@
+SELECT 
+    SalesOrderID AS OrderNumber, -- Renomeia SalesOrderID como OrderNumber
+    ProductID, -- Seleciona a coluna ProductID
+    OrderQty AS Quantity, -- Renomeia OrderQty como Quantity
+    SUM(OrderQty) OVER (ORDER BY SalesOrderID, ProductID ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS Total, -- Soma cumulativa de OrderQty
+    AVG(OrderQty) OVER (PARTITION BY SalesOrderID ORDER BY ProductID) AS Avg, -- Média de OrderQty por SalesOrderID
+    COUNT(OrderQty) OVER (ORDER BY SalesOrderID, ProductID ROWS BETWEEN UNBOUNDED PRECEDING AND 1 FOLLOWING) AS Count -- Contagem com janela entre uma linha anterior e a próxima
+FROM 
+    Sales.SalesOrderDetail
+WHERE 
+    SalesOrderID IN (43659, 43664) 
+    AND CAST(ProductID AS VARCHAR) LIKE '71%'; -- Converte ProductID para VARCHAR para aplicar LIKE
