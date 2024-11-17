@@ -1,0 +1,10 @@
+
+From the following table write a query in  SQL to ordered the BusinessEntityID column descendingly when SalariedFlag set to 'true' and BusinessEntityID in ascending order when SalariedFlag set to 'false'. Return BusinessEntityID, SalariedFlag columns.
+
+
+
+SELECT BusinessEntityID,SalariedFlag FROM HumanResources.Employee
+
+
+ORDER BY CASE SalariedFlag WHEN 'true' THEN BusinessEntityID END DESC  
+        ,CASE WHEN SalariedFlag ='false' THEN BusinessEntityID END;
