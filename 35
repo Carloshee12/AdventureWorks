@@ -7,3 +7,4 @@ FROM HumanResources.Department
 -- OFFSET clause is used to specify the number of rows to skip
 -- In this case, 10 rows will be skipped
 ORDER BY DepartmentID OFFSET 10 ROWS;
+ff
