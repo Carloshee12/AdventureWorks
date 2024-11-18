@@ -1,0 +1,17 @@
+SELECT Name, Color, ListPrice FROM Production.Product
+
+WHERE color = 'Blue'
+
+
+
+UNION ALL
+
+
+SELECT Name, Color, ListPrice FROM Production.Product
+
+WHERE color = 'Red'
+Order by ListPrice
+
+
+
+;
