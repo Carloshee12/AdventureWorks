@@ -1,0 +1,9 @@
+SELECT DepartmentID, Name, GroupName  
+
+-- From the HumanResources schema's Department table
+FROM HumanResources.Department  
+
+-- Ordering the results by DepartmentID and skipping the first 10 rows
+-- OFFSET clause is used to specify the number of rows to skip
+-- In this case, 10 rows will be skipped
+ORDER BY DepartmentID OFFSET 10 ROWS;
