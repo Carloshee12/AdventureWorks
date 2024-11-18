@@ -1,0 +1,53 @@
+Selecionar colunas e calcular métricas:
+
+sql
+Copiar código
+SELECT p.FirstName, p.LastName
+Seleciona os nomes (FirstName e LastName) de cada pessoa da tabela Person.
+sql
+Copiar código
+,ROW_NUMBER() OVER (ORDER BY a.PostalCode) AS "Row Number"
+Gera um número único para cada linha com base na ordenação pelo PostalCode. Mesmo que haja valores repetidos em PostalCode, o número será sequencial.
+sql
+Copiar código
+,RANK() OVER (ORDER BY a.PostalCode) AS "Rank"
+Calcula o rank com base no PostalCode, mas deixa lacunas na numeração quando há empates nos valores.
+sql
+Copiar código
+,DENSE_RANK() OVER (ORDER BY a.PostalCode) AS "Dense Rank"
+Calcula o rank denso, similar ao RANK, mas sem lacunas na numeração em caso de empates.
+sql
+Copiar código
+,NTILE(4) OVER (ORDER BY a.PostalCode) AS "Quartile"
+Divide o conjunto de resultados em quartis (4 partes iguais) com base na ordenação por PostalCode.
+sql
+Copiar código
+,s.SalesYTD, a.PostalCode
+Inclui as colunas SalesYTD (vendas acumuladas no ano) e PostalCode no resultado.
+Fonte dos dados:
+sql
+Copiar código
+FROM Sales.SalesPerson AS s
+INNER JOIN Person.Person AS p
+    ON s.BusinessEntityID = p.BusinessEntityID
+INNER JOIN Person.Address AS a
+    ON a.AddressID = p.BusinessEntityID
+Faz joins entre as tabelas:
+
+Sales.SalesPerson (apelidada como s): Contém informações de vendedores.
+Person.Person (apelidada como p): Contém dados de identificação, como nome.
+Person.Address (apelidada como a): Contém informações de endereço.
+Os joins são realizados com base no campo BusinessEntityID, que parece ser uma chave primária compartilhada entre essas tabelas.
+
+Filtrar os resultados:
+sql
+Copiar código
+WHERE TerritoryID IS NOT NULL AND SalesYTD <> 0;
+Inclui apenas as linhas em que:
+TerritoryID não é nulo (o vendedor está associado a um território).
+SalesYTD não é igual a 0 (o vendedor realizou vendas no ano).
+Resumo das funções analíticas:
+ROW_NUMBER: Sequencial único para cada linha.
+RANK: Ordenação com lacunas em caso de empates.
+DENSE_RANK: Ordenação sem lacunas.
+NTILE(4): Divide em 4 partes aproximadamente iguais.
