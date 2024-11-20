@@ -1,0 +1,10 @@
+From the following tables write a SQL query to retrieve the orders with orderqtys greater than 5 or unitpricediscount less than 1000, and totaldues greater than 100. Return all the columns from the tables.
+
+select * from Sales.SalesOrderHeader as sa
+
+JOIN Sales.SalesOrderDetail as sd
+ON sa.SalesOrderID = sd.SalesOrderDetailID
+
+WHERE sa.TotalDue > 100
+AND (sd.OrderQty > 5 OR sd.UnitPriceDiscount < 1000.00);
+
