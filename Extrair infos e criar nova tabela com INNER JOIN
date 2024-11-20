@@ -1,0 +1,52 @@
+Esta query realiza uma seleção de produtos com base em uma lista específica de valores de nomes, usando a cláusula VALUES para criar uma tabela derivada. Vamos analisar cada parte:
+
+1. Seleção de colunas:
+sql
+Copiar código
+SELECT ProductID, a.Name, Color
+Seleciona as colunas:
+ProductID: Identificação única do produto.
+Name: Nome do produto.
+Color: Cor do produto.
+2. Origem da tabela principal (FROM):
+sql
+Copiar código
+FROM Production.Product AS a
+A tabela Production.Product contém os detalhes dos produtos.
+É referenciada pelo alias a para facilitar o uso posterior.
+3. Tabela derivada com VALUES:
+sql
+Copiar código
+INNER JOIN (VALUES ('Blade'), ('Crown Race'), ('AWC Logo Cap')) AS b(Name)
+VALUES: Cria uma tabela derivada temporária em memória com os valores especificados.
+Neste caso, a tabela contém apenas uma coluna (Name) com os valores: 'Blade', 'Crown Race', e 'AWC Logo Cap'.
+Alias b(Name): A tabela derivada é chamada de b, e sua única coluna é nomeada Name.
+4. Condição de junção:
+sql
+Copiar código
+ON a.Name = b.Name
+Faz a junção interna (INNER JOIN) entre a tabela Production.Product e a tabela derivada b.
+A condição compara os nomes dos produtos (a.Name) com os valores fornecidos na tabela derivada (b.Name).
+Comportamento da query:
+Retorna todos os registros da tabela Production.Product cujo nome do produto (Name) esteja na lista fornecida: 'Blade', 'Crown Race', ou 'AWC Logo Cap'.
+Exibe o ProductID, Name, e Color desses produtos.
+Por que usar VALUES?
+VALUES é uma maneira conveniente de criar uma tabela temporária sem a necessidade de uma tabela real no banco de dados.
+É útil para filtrar dados com base em uma lista pequena e fixa de valores, sem precisar de uma subquery ou tabela externa.
+Resumo do propósito:
+A query é usada para extrair informações de produtos específicos (Blade, Crown Race, AWC Logo Cap) da tabela Production.Product, utilizando VALUES como fonte temporária dos critérios de filtro.
+
+
+
+- Selecting specific columns from the Product table
+SELECT ProductID, a.Name, Color  
+
+-- From the Production schema's Product table, aliasing it as 'a'
+FROM Production.Product AS a  
+
+-- Joining with a derived table using the VALUES clause to create a table with specified values
+-- The derived table consists of a single column 'Name' with values 'Blade', 'Crown Race', and 'AWC Logo Cap'
+INNER JOIN (VALUES ('Blade'), ('Crown Race'), ('AWC Logo Cap')) AS b(Name)   
+
+-- Joining condition: matching product names between the Product table and the derived table
+ON a.Name = b.Name;
