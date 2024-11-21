@@ -6,3 +6,11 @@ SELECT CONCAT("There are a total of ",COUNT(OCCUPATION)," ",LOWER(OCCUPATION),"s
 FROM OCCUPATIONS 
 GROUP BY OCCUPATION 
 ORDER BY COUNT(OCCUPATION), OCCUPATION; 
+
+
+------------------------------------
+#3 Concatenações
+
+SELECT CONCAT( name, '   color:-',color,' Product Number:', productnumber ) AS result, color
+-- From the Production schema's Product table
+FROM production.product;
