@@ -1,0 +1,5 @@
+SELECT LEFT(Name, 5)   
+-- From the Production schema's Product table
+FROM Production.Product  
+-- Ordering the result set by the 'ProductID' column
+ORDER BY ProductID;
