@@ -1,0 +1,10 @@
+SELECT BusinessEntityID,DATEPART(Year,QuotaDate) as year,SalesQuota as CurrentQuota,
+    LAG(SalesQuota, 1, 0) OVER (ORDER BY DATEPART(year, QuotaDate)) AS PreviousQuota  -- Cota de vendas do ano anterior
+
+
+
+
+FROM Sales.SalesPersonQuotaHistory
+
+
+WHERE BusinessEntityID = 275 AND DATEPART(Year,QuotaDate) IN (2012,2013)
