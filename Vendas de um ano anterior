@@ -8,3 +8,17 @@ FROM Sales.SalesPersonQuotaHistory
 
 
 WHERE BusinessEntityID = 275 AND DATEPART(Year,QuotaDate) IN (2012,2013)
+
+
+
+Outro Exemplo 
+
+--------------------------
+
+SELECT TerritoryName,BusinessEntityID,SalesYTD,
+LAG(SalesYTD,1,0) OVER (PARTITION BY TerritoryName ORDER BY SalesYTD DESC) AS Prev
+
+FROM Sales.vSalesPerson
+WHERE TerritoryName IN ('Canada', 'Northwest')
+order by TerritoryName
+;
