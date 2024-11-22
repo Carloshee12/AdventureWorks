@@ -1,0 +1,18 @@
+SELECT name,
+ListPrice,
+name as leastexpansive
+FROM Production.Product as p
+
+
+JOIN
+(SELECT MIN(ListPrice) as MinPrice
+FROM
+Production.Product
+
+
+WHERE ProductSubcategoryID = 37)  AS sub
+ON 
+p.Listprice = sub.MinPrice
+WHERE 
+p.ProductSubcategoryID = 37;
+
