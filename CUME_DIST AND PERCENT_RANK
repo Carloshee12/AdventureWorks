@@ -1,0 +1,10 @@
+SELECT Department,LastName, Rate,
+CUME_DIST() OVER (PARTITION BY Department ORDER BY Rate) AS cumeDist,
+PERCENT_RANK() OVER (PARTITION BY Department ORDER BY Rate) AS PctRank
+FROM HumanResources.vemployeedepartmenthistory as HV
+
+JOIN  HumanResources.EmployeePayHistory AS HR
+ON hr.BusinessEntityID = HV.BusinessEntityID
+
+WHERE Department IN ('Infrmation Services','Document Control')
+ORDER BY Department , Rate desc;
