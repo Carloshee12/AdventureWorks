@@ -1,0 +1,14 @@
+SELECT JobTitle, LastName, VacationHours,
+FIRST_VALUE(LastName) OVER (
+    PARTITION BY JobTitle              -- Particiona os dados por cargo
+    ORDER BY VacationHours ASC         -- Ordena as horas de férias em ordem crescente
+) AS FewestVacationHours
+
+
+
+FROM HumanResources.Employee as hr
+
+JOIN Person.Person AS pp
+ON hr.BusinessEntityID = pp.BusinessEntityID
+
+;
