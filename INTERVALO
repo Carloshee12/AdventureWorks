@@ -1,0 +1,11 @@
+SELECT 
+    -- Selecting the SalesOrderID column
+    SalesOrderID,  
+
+    -- Selecting the OrderDate column
+    OrderDate,   
+
+    -- Adding an interval of 2 days to the OrderDate and aliasing it as PromisedShipDate
+    OrderDate + INTERVAL '2 day' AS PromisedShipDate
+FROM 
+    Sales.SalesOrderHeader;
