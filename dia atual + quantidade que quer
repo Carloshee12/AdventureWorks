@@ -1,0 +1,9 @@
+SELECT FirstName, LastName, DATEADD(DAY, 2, GETDATE()) AS [New Date]  FROM Sales.SalesPerson as ss
+
+JOIN  Person.Person as pp
+ON pp.BusinessEntityID = ss.BusinessEntityID
+
+JOIN Person.Address as pa
+ON pa.AddressID = pp.BusinessEntityID
+
+;
