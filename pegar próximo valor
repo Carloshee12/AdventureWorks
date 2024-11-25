@@ -1,0 +1,28 @@
+SELECT 
+    -- Selecting the TerritoryName column
+    TerritoryName, 
+
+    -- Selecting the BusinessEntityID column
+    BusinessEntityID, 
+
+    -- Selecting the SalesYTD column
+    SalesYTD,   
+
+    -- Using the LEAD window function to get the next SalesYTD, defaulting to 0 if not available
+    LEAD(SalesYTD, 1, 0) OVER (
+        -- Partitioning the data by TerritoryName and ordering by SalesYTD in descending order
+        PARTITION BY TerritoryName 
+        ORDER BY SalesYTD DESC
+    ) AS NextRepSales  
+
+-- Filtering data from the vSalesPerson view
+FROM 
+    Sales.vSalesPerson  
+
+-- Filtering records for territories named 'Northwest' and 'Canada'
+WHERE 
+    TerritoryName IN ('Northwest', 'Canada')   
+
+-- Ordering the result set by TerritoryName
+ORDER BY 
+    TerritoryName;
